@@ -5,7 +5,7 @@ import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
 export default function Inicial() {
   return (
     <View style={styles.container}>     
-      <Text style={styles.nome}>Página Incial!</Text> 
+      <Text style={styles.nome}>Página Inicial!</Text> 
     </View>
   );
 }

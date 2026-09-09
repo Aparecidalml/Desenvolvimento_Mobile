@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 
 import { View, Text, Alert, StyleSheet, TextInput, Button, Linking } from 'react-native';
+
+import useAuth from '../contexts/AuthContext'
+
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function Cadastro({ navigation }) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  function cadastrar() {
+  // const {setUsuario} = useAuth()
+
+  async function cadastrar() {
     if (nome === '' || email === '' || senha === '') {
       Alert.alert('Atenção', 'Preencha todos os campos.');
       return;
     }
-    Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
-    navigation.navigate('Login', { nome, email, senha });
+    // setUsuario({ nome, email, senha })
+    try{
+      await AsyncStorage.setItem('usuario', JSON.stringify({ nome, email, senha }))
+      Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
+      navigation.navigate('Login');
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Erro!','Erro ao salvar o cadastro.')
+    }
   }
 
   return (
@@ -49,6 +62,7 @@ export default function Cadastro({ navigation }) {
       <Button title="Cadastrar" onPress={cadastrar} />
       <Text> {'\n\n'} </Text>
       <Text onPress={()=> Linking.openURL('https://www.rn.senac.br/')}> Acesse SENAC </Text>
+      {/* <Text onPress={()=> Linking.openURL('https://wa.me/{}/?text={}')}> Contato via WhatsApp </Text> */}
     </View>
   );
 }

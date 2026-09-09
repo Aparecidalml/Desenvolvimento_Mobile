@@ -2,22 +2,38 @@ import React, { useState } from 'react';
 
 import { View, Text, Alert, StyleSheet, TextInput, Button } from 'react-native';
 
-export default function Login({ navigation, route }) {
+import useAuth from '../contexts/AuthContext';
+
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
   // const {nome,email, senha} = route.params
-  // const nome = route.pramas.nome
+  // const nome = route.params.nome
 
-  function entrar() {
+  // const {usuario} = useAuth()
+
+  async function entrar() {
     if (!email || !senha) {
       Alert.alert('Erro', 'Preencha todos os campos.');
       return;
     }
-    if (email === route.params.email && senha === route.params.senha) {
-      navigation.navigate('Tabs', { nome: route.params.nome });
-    } else {
-      Alert.alert('Erro', 'E-mail ou senha incorretos.');
+    try{
+      const usuario = JSON.parse(await AsyncStorage.getItem('usuario'))
+      if(!usuario){
+        Alert.alert('Erro', 'Usuário não cadastrado. Por favor, cadastre-se primeiro.');
+        return;
+      }
+      if (email === usuario.email && senha === usuario.senha) {
+        navigation.navigate('Tabs');
+      } else {
+        Alert.alert('Erro', 'E-mail ou senha incorretos.');
+      }
+    }catch(error){
+      console.log(error)
+      Alert.alert('Erro', 'Ocorreu um erro ao tentar fazer login.')
     }
   }
 
