@@ -1,11 +1,15 @@
 import React from 'react';
 
-import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet, Button } from 'react-native';
 
-export default function Inicial() {
+export default function Configuracao({navigation}) {
   return (
     <View style={styles.container}>     
-      <Text style={styles.nome}>Página Inicial!</Text> 
+      <Text style={styles.nome}>Configurações</Text> 
+      <Button
+        title="SAIR"
+        onPress={() => navigation.navigate('Login')}
+      />
     </View>
   );
 }

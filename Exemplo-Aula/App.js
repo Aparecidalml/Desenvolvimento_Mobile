@@ -8,6 +8,9 @@ import Configuracao from './src/screens/Configuracao';
 
 import { AuthProvider } from './src/contexts/AuthContext'
 
+import { ConectarBD, criarTabelaUsuarios, apagarTabelaUsuarios } from './src/database/database';
+import { useEffect } from 'react';
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -67,6 +70,12 @@ const AppNavigator = () => {
 };
 
 export default function App() {
+
+  useEffect( () =>  {
+    criarTabelaUsuarios()
+    }     
+  , [])
+
   return (
     <SafeAreaProvider>
       <View style={styles.container}>
