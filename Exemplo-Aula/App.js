@@ -74,9 +74,9 @@ export default function App() {
 
   useEffect(  () =>  {
     async function executarBD(){
-      // await ConectarBD()
-      // await criarTabelaUsuarios() 
-      await inserirUsuario()
+      await criarTabelaUsuarios() 
+      await mostrarUsuarios()
+      // await inserirUsuario("Maria", "maria@example.com", "123456")
       // await mostrarUsuarios()
     }   
       executarBD()
