@@ -21,8 +21,14 @@ export async function criarTabelaUsuarios(){
                 nome text not null, 
                 email text not null, 
                 senha text not null
-            );`
-    )
+            );
+            create table if not exists agendamentos(
+                id integer primary key autoincrement not null, 
+                paciente text not null, 
+                medico text not null
+            );
+            
+        `)
     console.log("Tabela de usuários criada com sucesso!")
     }catch(error){
         console.log("Erro ao criar a tabela de usuários", error)

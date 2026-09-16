@@ -10,6 +10,7 @@ import { AuthProvider } from './src/contexts/AuthContext'
 
 import { ConectarBD, criarTabelaUsuarios, apagarTabelaUsuarios } from './src/database/database';
 import { useEffect } from 'react';
+import { inserirUsuario, mostrarUsuarios } from './src/repository/usuarioRepository'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -71,9 +72,15 @@ const AppNavigator = () => {
 
 export default function App() {
 
-  useEffect( () =>  {
-    criarTabelaUsuarios()
-    }     
+  useEffect(  () =>  {
+    async function executarBD(){
+      // await ConectarBD()
+      // await criarTabelaUsuarios() 
+      await inserirUsuario()
+      // await mostrarUsuarios()
+    }   
+      executarBD()
+  } 
   , [])
 
   return (
