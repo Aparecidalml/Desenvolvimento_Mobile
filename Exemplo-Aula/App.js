@@ -10,7 +10,7 @@ import { AuthProvider } from './src/contexts/AuthContext'
 
 import { ConectarBD, criarTabelaUsuarios, apagarTabelaUsuarios } from './src/database/database';
 import { useEffect } from 'react';
-import { inserirUsuario, mostrarUsuarios } from './src/repository/usuarioRepository'
+import { inserirUsuario, mostrarUsuarios, mostrarUsuario, atualizarUsuario, removerUsuario } from './src/repository/usuarioRepository'
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -75,8 +75,12 @@ export default function App() {
   useEffect(  () =>  {
     async function executarBD(){
       await criarTabelaUsuarios() 
-      // await inserirUsuario("Aparecirda", "aparecida@rn.senac.br", "123456")
-      await mostrarUsuarios()
+      //await inserirUsuario("Aparecida", "aparecida@rn.senac.br", "123456")
+      await mostrarUsuarios()      
+      await atualizarUsuario(35, "Matheus", "matheus@gmail.com", "12345")
+      await mostrarUsuario(35)
+      await removerUsuario(33)
+      await mostrarUsuarios()   
     }   
       executarBD()
   } 

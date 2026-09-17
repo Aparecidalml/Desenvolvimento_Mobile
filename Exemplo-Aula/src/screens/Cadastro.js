@@ -6,6 +6,8 @@ import useAuth from '../contexts/AuthContext'
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
+import { inserirUsuario } from '../repository/usuarioRepository'
+
 export default function Cadastro({ navigation }) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -20,7 +22,8 @@ export default function Cadastro({ navigation }) {
     }
     // setUsuario({ nome, email, senha })
     try{
-      await AsyncStorage.setItem('usuario', JSON.stringify({ nome, email, senha }))
+      // await AsyncStorage.setItem('usuario', JSON.stringify({ nome, email, senha }))
+      await inserirUsuario(nome, email, senha)
       Alert.alert('Sucesso', 'Usuário cadastrado com sucesso!');
       navigation.navigate('Login');
     } catch (error) {
