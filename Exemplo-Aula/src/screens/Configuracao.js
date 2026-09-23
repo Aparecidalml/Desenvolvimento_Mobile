@@ -5,7 +5,12 @@ import { View, Text, Image, Pressable, StyleSheet, Button } from 'react-native';
 export default function Configuracao({navigation}) {
   return (
     <View style={styles.container}>     
-      <Text style={styles.nome}>Configurações</Text> 
+      <Text style={styles.nome}>Configurações {'\n'}</Text> 
+      <Button
+        title="📋Informações"
+        onPress={() => navigation.navigate('Info')}
+      />
+      <Text> {'\n'} </Text>
       <Button
         title="SAIR"
         onPress={() => navigation.navigate('Login')}

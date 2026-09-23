@@ -5,6 +5,8 @@ import Cadastro from './src/screens/Cadastro';
 import Login from './src/screens/Login';
 import Perfil from './src/screens/Perfil';
 import Configuracao from './src/screens/Configuracao';
+import Info from './src/screens/Info';
+
 
 import { AuthProvider } from './src/contexts/AuthContext'
 
@@ -50,6 +52,7 @@ const TabNavigator = ({route}) => {
         options={{tabBarIcon: ({color, size}) => (
           <Ionicons name='settings' size={size} color={'green'} />
         )}}/>
+       
     </Tab.Navigator>
   )
 }
@@ -66,25 +69,28 @@ const AppNavigator = () => {
         component={TabNavigator}
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="Info" component={Info}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 };
 
 export default function App() {
 
-  useEffect(  () =>  {
-    async function executarBD(){
-      await criarTabelaUsuarios() 
-      //await inserirUsuario("Aparecida", "aparecida@rn.senac.br", "123456")
-      await mostrarUsuarios()      
-      await atualizarUsuario(35, "Matheus", "matheus@gmail.com", "12345")
-      await mostrarUsuario(35)
-      await removerUsuario(33)
-      await mostrarUsuarios()   
-    }   
-      executarBD()
-  } 
-  , [])
+  // useEffect(  () =>  {
+  //   async function executarBD(){
+  //     await criarTabelaUsuarios() 
+  //     await inserirUsuario("Aparecida", "aparecida@rn.senac.br", "123456")
+  //     await mostrarUsuarios()      
+  //     await atualizarUsuario(35, "Matheus", "matheus@gmail.com", "12345")
+  //     await mostrarUsuario(35)
+  //     await removerUsuario(33)
+  //     await mostrarUsuarios()   
+  //   }   
+  //     executarBD()
+  // } 
+  // , [])
 
   return (
     <SafeAreaProvider>
