@@ -18,8 +18,10 @@ export async function mostrarUsuarios(){
         const result = await db.getAllAsync("select * from usuarios")
         if(result.length > 0){
             console.log("Usuários encontrados: ", result)
+            return result
         }else{
             console.log("Sem usuários cadastrados!")
+            return []
         }
     }catch(e){
         console.log("Erro ao mostrar usuários!", e)
@@ -33,8 +35,10 @@ export async function mostrarUsuario(id){
         const result = await db.getFirstAsync("select * from usuarios where id = ?", id)
         if(result){
             console.log("Usuários encontrados: ", result)
+            return result
         }else{
             console.log("Sem usuários cadastrados!")
+            return []
         }
     }catch(e){
         console.log("Erro ao mostrar usuários!", e)
@@ -50,8 +54,10 @@ export async function atualizarUsuario(id, nome, email, senha){
             update usuarios set nome = ?, email = ?, senha = ? where id = ?`,
                 nome, email, senha, id)
             console.log("Usuário atualizado com sucesso! ")
+            return result
             }else{
                 console.log("Usuário não encontrado!")
+                return []
             }
     }catch(e){
         console.log("Erro ao atualizar usuário!", e)
@@ -66,8 +72,10 @@ export async function removerUsuario(id){
             const result = await db.runAsync(`
                 delete from usuarios where id = ?`, id)
             console.log("Usuário removido com sucesso! ")
+            return result
             }else{
                 console.log("Usuário não encontrado!")
+                return []
             }
     }catch(e){
         console.log("Erro ao remover usuário!", e)

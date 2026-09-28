@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { View, Text, Alert, StyleSheet, TextInput, Button } from 'react-native';
 
@@ -6,14 +6,27 @@ import useAuth from '../contexts/AuthContext';
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
+import { mostrarUsuarios } from '../repository/usuarioRepository'
+
+
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [usuarios, setUsuarios] = useState([]);
 
   // const {nome,email, senha} = route.params
   // const nome = route.params.nome
 
   // const {usuario} = useAuth()
+
+    useEffect(  () =>  {
+      async function buscarUsuarios(){
+        setUsuarios(await mostrarUsuarios())   
+   
+      }   
+        buscarUsuarios()
+    } 
+    , [])
 
   async function entrar() {
     if (!email || !senha) {
@@ -21,7 +34,8 @@ export default function Login({ navigation }) {
       return;
     }
     try{
-      const usuario = JSON.parse(await AsyncStorage.getItem('usuario'))
+      // const usuario = JSON.parse(await AsyncStorage.getItem('usuario'))
+      const usuario = usuarios.find(u => u.email === email && u.senha === senha)
       if(!usuario){
         Alert.alert('Erro', 'Usuário não cadastrado. Por favor, cadastre-se primeiro.');
         return;

@@ -78,19 +78,19 @@ const AppNavigator = () => {
 
 export default function App() {
 
-  // useEffect(  () =>  {
-  //   async function executarBD(){
-  //     await criarTabelaUsuarios() 
+  useEffect(  () =>  {
+    async function executarBD(){
+      await criarTabelaUsuarios() 
   //     await inserirUsuario("Aparecida", "aparecida@rn.senac.br", "123456")
-  //     await mostrarUsuarios()      
+      await mostrarUsuarios()      
   //     await atualizarUsuario(35, "Matheus", "matheus@gmail.com", "12345")
   //     await mostrarUsuario(35)
   //     await removerUsuario(33)
   //     await mostrarUsuarios()   
-  //   }   
-  //     executarBD()
-  // } 
-  // , [])
+    }   
+      executarBD()
+  } 
+  , [])
 
   return (
     <SafeAreaProvider>
