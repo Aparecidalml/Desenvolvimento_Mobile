@@ -6,7 +6,7 @@ import Login from './src/screens/Login';
 import Perfil from './src/screens/Perfil';
 import Configuracao from './src/screens/Configuracao';
 import Info from './src/screens/Info';
-
+import GPS from './src/screens/GPS';
 
 import { AuthProvider } from './src/contexts/AuthContext'
 
@@ -52,6 +52,11 @@ const TabNavigator = ({route}) => {
         options={{tabBarIcon: ({color, size}) => (
           <Ionicons name='settings' size={size} color={'green'} />
         )}}/>
+        <Tab.Screen name="GPS" component={GPS} 
+         options={{ headerShown: false }}
+        options={{tabBarIcon: ({color, size}) => (
+          <Ionicons name='location' size={size} color={'green'} />
+        )}}/>
        
     </Tab.Navigator>
   )
@@ -82,7 +87,7 @@ export default function App() {
     async function executarBD(){
       await criarTabelaUsuarios() 
   //     await inserirUsuario("Aparecida", "aparecida@rn.senac.br", "123456")
-      await mostrarUsuarios()      
+  //    await mostrarUsuarios()      
   //     await atualizarUsuario(35, "Matheus", "matheus@gmail.com", "12345")
   //     await mostrarUsuario(35)
   //     await removerUsuario(33)
