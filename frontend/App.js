@@ -7,6 +7,7 @@ import Perfil from './src/screens/Perfil';
 import Configuracao from './src/screens/Configuracao';
 import Info from './src/screens/Info';
 import GPS from './src/screens/GPS';
+import ConsultaUsuario from './src/screens/ConsultaUsuario';
 
 import { AuthProvider } from './src/contexts/AuthContext'
 
@@ -42,7 +43,7 @@ const TabNavigator = ({route}) => {
   // const { nome } = route.params;
   return(
     <Tab.Navigator >
-      <Tab.Screen name="Perfil" component={Perfil} 
+      <Tab.Screen name="Perfil" component={ConsultaUsuario} 
          options={{ headerShown: false }}
         options={{tabBarIcon: ({color, size}) => (
           <Ionicons name='person' size={size} color={'green'} />
@@ -64,7 +65,8 @@ const TabNavigator = ({route}) => {
 
 const AppNavigator = () => {
   return (
-    <Stack.Navigator>      
+    <Stack.Navigator>  
+       
       <Stack.Screen name="Login" component={Login}
         options={{ headerShown: false }}
       />
